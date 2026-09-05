@@ -1,0 +1,29 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1000" viewBox="0 0 1400 1000">
+  <rect width="1400" height="1000" fill="#1e3a5f"/>
+  <g stroke="#9fc3e8" stroke-width="2" fill="none">
+    <rect x="120" y="100" width="1160" height="800"/>
+    <rect x="180" y="160" width="300" height="240"/>
+    <rect x="180" y="440" width="300" height="240"/>
+    <rect x="520" y="160" width="300" height="520"/>
+    <rect x="860" y="160" width="300" height="240"/>
+    <rect x="860" y="440" width="200" height="300"/>
+  </g>
+  <g stroke="#9fc3e8" stroke-width="1.2" fill="none" opacity="0.6">
+    <line x1="180" y1="400" x2="480" y2="400"/>
+    <line x1="180" y1="680" x2="480" y2="680"/>
+    <line x1="520" y1="420" x2="820" y2="420"/>
+    <circle cx="330" cy="300" r="90" stroke-dasharray="8 8"/>
+    <line x1="520" y1="300" x2="820" y2="300"/>
+    <line x1="1060" y1="300" x2="1060" y2="440"/>
+  </g>
+  <g stroke="#7fa8d8" fill="none" opacity="0.5" stroke-width="1">
+    <line x1="120" y1="120" x2="1280" y2="120"/>
+    <line x1="120" y1="480" x2="1280" y2="480"/>
+    <line x1="120" y1="880" x2="1280" y2="880"/>
+    <line x1="330" y1="90" x2="330" y2="910"/>
+    <line x1="670" y1="90" x2="670" y2="910"/>
+    <line x1="1010" y1="90" x2="1010" y2="910"/>
+  </g>
+  <text x="80" y="60" fill="#9fc3e8" font-family="monospace" font-size="28">PLANTA NIVEL 01 — ESC 1:50 — PROYECTO LOFT MONTAÑEZ</text>
+  <text x="80" y="960" fill="#7fa8d8" font-family="monospace" font-size="22">ARQ. CRISTINA VARGAS · Nº REG. CENARQ 12-485 · HOJA 01/04</text>
+</svg>

@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+
+  --color-ink: #1c1a17;
+  --color-ink-soft: #5b554d;
+  --color-paper: #faf7f2;
+  --color-paper-deep: #f1ece3;
+  --color-line: #e3ddd2;
+  --color-clay: #b5653a;
+  --color-clay-dark: #8f4b28;
+  --color-sage: #7a8b6f;
+  --color-concrete: #6b7480;
+
+  --shadow-soft: 0 20px 50px -20px rgba(28, 26, 23, 0.35);
+  --shadow-card: 0 30px 60px -30px rgba(28, 26, 23, 0.5);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background: var(--color-paper);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--color-clay);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-paper-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-clay);
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .grain {
+    background-image: radial-gradient(rgba(28, 26, 23, 0.04) 1px, transparent 1px);
+    background-size: 6px 6px;
+  }
+}
