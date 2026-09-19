@@ -9,23 +9,23 @@ const nav = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-paper/10 bg-ink px-6 py-16 text-paper md:px-12">
+    <footer className="border-t border-line bg-paper-deep px-6 py-16 text-ink md:px-12">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 md:grid-cols-4">
         <div className="md:col-span-2">
           <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full border border-clay/60 text-clay">
+            <span className="flex h-10 w-10 items-center justify-center rounded-full border border-clay/50 text-clay">
               <Icon name="compass" size={18} />
             </span>
             <div>
-              <p className="font-display text-xl font-semibold">Cristina Vargas</p>
-              <p className="text-[10px] uppercase tracking-[0.25em] text-paper/55">Arquitectura · Obra</p>
+              <p className="font-display text-xl font-semibold uppercase tracking-[0.18em]">Stoico</p>
+              <p className="text-[10px] uppercase tracking-[0.25em] text-ink-soft">Estudio · Arquitectura</p>
             </div>
           </div>
-          <p className="mt-5 max-w-sm text-sm leading-relaxed text-paper/60">
-            Arquitectura residencial, rehabilitación de lofts y paisaje urbano con materialidad honesta y presupuesto
-            transparente por metro cuadrado.
+          <p className="mt-5 max-w-sm text-sm leading-relaxed text-ink-soft">
+            Arquitectura residencial, comercial y paisajismo desde la Isla de Margarita. Diseño de baja voz, materiales
+            honestos y presupuesto transparente por metro cuadrado.
           </p>
-          <p className="mt-6 text-xs text-paper/40">© {new Date().getFullYear()} Cristina Vargas Arquitectura. Todos los derechos reservados.</p>
+          <p className="mt-6 text-xs text-ink-soft/60">© {new Date().getFullYear()} Stoico · Estudio de Arquitectura. Isla de Margarita, Venezuela.</p>
         </div>
 
         <div>
@@ -33,7 +33,7 @@ export function Footer() {
           <ul className="mt-4 space-y-3">
             {nav.map((item) => (
               <li key={item.to}>
-                <Link to={item.to} className="text-sm text-paper/70 transition-colors hover:text-paper">
+                <Link to={item.to} className="text-sm text-ink-soft transition-colors hover:text-ink">
                   {item.label}
                 </Link>
               </li>
@@ -43,18 +43,18 @@ export function Footer() {
 
         <div>
           <p className="text-xs font-semibold uppercase tracking-widest text-clay">Contacto</p>
-          <ul className="mt-4 space-y-3 text-sm text-paper/70">
+          <ul className="mt-4 space-y-3 text-sm text-ink-soft">
             <li>
-              <a href="mailto:estudio@cristinavargas.arq" className="transition-colors hover:text-paper">
-                estudio@cristinavargas.arq
+              <a href="mailto:estudio@stoico.arq" className="transition-colors hover:text-ink">
+                estudio@stoico.arq
               </a>
             </li>
             <li>
-              <a href="tel:+525512345678" className="transition-colors hover:text-paper">
-                +52 55 1234 5678
+              <a href="tel:+584121234567" className="transition-colors hover:text-ink">
+                +58 412 123 4567
               </a>
             </li>
-            <li className="text-paper/50">CDMX · Guadalajara · Vallarta</li>
+            <li className="text-ink-soft/70">La Asunción · Pampatar · Playa El Ángel</li>
           </ul>
         </div>
       </div>

@@ -27,6 +27,7 @@ export type IconName =
   | 'calendar'
   | 'building'
   | 'sparkles'
+  | 'whatsapp'
 
 const paths: Record<IconName, ReactNode> = {
   compass: (
@@ -159,6 +160,12 @@ const paths: Record<IconName, ReactNode> = {
     <>
       <path d="M12 3l1.9 5.2L19 10l-5.1 1.8L12 17l-1.9-5.2L5 10l5.1-1.8z" />
       <path d="M19 15l.9 2.4L22 18l-2.1.6L19 21l-.9-2.4L16 18l2.1-.6z" />
+    </>
+  ),
+  whatsapp: (
+    <>
+      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+      <path d="M8.5 8.5h7M8.5 12h4" />
     </>
   ),
 }

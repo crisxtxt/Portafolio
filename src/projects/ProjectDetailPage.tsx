@@ -147,11 +147,11 @@ export function ProjectDetailPage() {
               ))}
             </dl>
 
-            <div className="mt-6 rounded-2xl bg-ink p-6 text-paper">
-              <h3 className="font-display text-xl">Características destacadas</h3>
+            <div className="mt-6 rounded-2xl border border-line bg-paper-deep p-6">
+              <h3 className="font-display text-xl font-semibold text-ink">Características destacadas</h3>
               <ul className="mt-4 space-y-2.5">
                 {project.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-2.5 text-sm text-paper/80">
+                  <li key={feature} className="flex items-start gap-2.5 text-sm text-ink-soft">
                     <Icon name="check" size={16} className="mt-0.5 shrink-0 text-clay" />
                     {feature}
                   </li>
@@ -248,28 +248,30 @@ export function ProjectDetailPage() {
         </div>
       </section>
 
-      <section className="bg-ink px-6 py-20 text-paper md:px-12">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-10 md:flex-row md:items-center">
-          <div>
-            <Reveal>
-              <h2 className="font-display text-4xl font-medium text-balance md:text-5xl">¿Quieres una obra como esta?</h2>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <p className="mt-4 max-w-xl text-paper/70">Cuéntanos tu terreno y tu programa. Estimarás el presupuesto por m² y agendaremos una consultoría.</p>
+      <section className="px-6 py-20 md:px-12">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex flex-col items-start justify-between gap-10 rounded-3xl border border-line bg-paper-deep p-10 shadow-soft md:flex-row md:items-center md:p-14">
+            <div>
+              <Reveal>
+                <h2 className="font-display text-4xl font-semibold text-balance text-ink md:text-5xl">¿Quieres una obra como esta?</h2>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <p className="mt-4 max-w-xl text-ink-soft">Cuéntanos tu terreno y tu programa. Estimarás el presupuesto por m² y agendaremos una consultoría.</p>
+              </Reveal>
+            </div>
+            <Reveal delay={0.2}>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Button to="/contacto" variant="secondary" size="lg">
+                  Cotizar obra
+                  <Icon name="arrow-right" size={18} />
+                </Button>
+                <Button to={`/proyectos/${next.slug}`} variant="outline" size="lg">
+                  Siguiente obra
+                  <Icon name="arrow-up-right" size={18} />
+                </Button>
+              </div>
             </Reveal>
           </div>
-          <Reveal delay={0.2}>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <Button to="/contacto" variant="secondary" size="lg">
-                Cotizar obra
-                <Icon name="arrow-right" size={18} />
-              </Button>
-              <Button to={`/proyectos/${next.slug}`} variant="ghost" size="lg" className="border border-paper/25 text-paper hover:border-clay hover:text-clay">
-                Siguiente obra
-                <Icon name="arrow-up-right" size={18} />
-              </Button>
-            </div>
-          </Reveal>
         </div>
       </section>
     </div>

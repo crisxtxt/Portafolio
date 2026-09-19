@@ -2,20 +2,22 @@
 
 @theme {
   --font-sans: "Inter", system-ui, sans-serif;
-  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-display: "Archivo", system-ui, sans-serif;
 
-  --color-ink: #1c1a17;
-  --color-ink-soft: #5b554d;
-  --color-paper: #faf7f2;
-  --color-paper-deep: #f1ece3;
-  --color-line: #e3ddd2;
-  --color-clay: #b5653a;
-  --color-clay-dark: #8f4b28;
+  --color-ink: #2b2926;
+  --color-ink-soft: #6b665e;
+  --color-paper: #faf8f3;
+  --color-paper-deep: #f2efe7;
+  --color-line: #e2dcd0;
+  --color-clay: #9f7d3f;
+  --color-clay-dark: #7c6130;
+  --color-sand: #d8c6a2;
+  --color-stone: #87817a;
   --color-sage: #7a8b6f;
   --color-concrete: #6b7480;
 
-  --shadow-soft: 0 20px 50px -20px rgba(28, 26, 23, 0.35);
-  --shadow-card: 0 30px 60px -30px rgba(28, 26, 23, 0.5);
+  --shadow-soft: 0 20px 50px -20px rgba(43, 41, 38, 0.3);
+  --shadow-card: 0 30px 60px -30px rgba(43, 41, 38, 0.42);
 }
 
 html {
@@ -53,12 +55,13 @@ body {
 @layer utilities {
   .font-display {
     font-family: var(--font-display);
+    letter-spacing: -0.015em;
   }
   .text-balance {
     text-wrap: balance;
   }
   .grain {
-    background-image: radial-gradient(rgba(28, 26, 23, 0.04) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(43, 41, 38, 0.045) 1px, transparent 1px);
     background-size: 6px 6px;
   }
 }

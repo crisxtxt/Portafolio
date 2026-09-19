@@ -66,6 +66,19 @@ export function ContactPage() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
+  function handleEstimate(payload: { category: Category; areaM2: number }) {
+    setForm((current) => ({
+      ...current,
+      type: 'cotizacion',
+      category: payload.category,
+      areaM2: String(payload.areaM2),
+      budgetRange: budgetRanges[Math.min(Math.floor(payload.areaM2 / 500), budgetRanges.length - 1)],
+    }))
+    setError(null)
+    setSubmitted(false)
+    document.getElementById('consulta-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
   return (
     <div className="pb-0">
       <PageHero
@@ -77,26 +90,40 @@ export function ContactPage() {
       <section className="px-6 py-20 md:px-12">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <BudgetEstimator />
+            <BudgetEstimator onEstimate={handleEstimate} />
 
             <Reveal delay={0.15} className="mt-6">
               <div className="space-y-4 rounded-3xl border border-line bg-paper-deep p-8">
-                <a href="mailto:estudio@cristinavargas.arq" className="group flex items-center gap-4 text-ink">
+                <a
+                  href="https://wa.me/584121234567?text=Hola%20Stoico%2C%20quiero%20cotizar%20una%20obra"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-4 text-ink"
+                >
+                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-clay text-paper transition-colors group-hover:bg-clay-dark">
+                    <Icon name="whatsapp" size={20} />
+                  </span>
+                  <div>
+                    <p className="text-xs uppercase tracking-widest text-ink-soft">WhatsApp</p>
+                    <p className="text-sm font-medium">Respuesta inmediata · +58 412 123 4567</p>
+                  </div>
+                </a>
+                <a href="mailto:estudio@stoico.arq" className="group flex items-center gap-4 text-ink">
                   <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-ink text-paper transition-colors group-hover:bg-clay">
                     <Icon name="mail" size={20} />
                   </span>
                   <div>
                     <p className="text-xs uppercase tracking-widest text-ink-soft">Correo</p>
-                    <p className="text-sm font-medium">estudio@cristinavargas.arq</p>
+                    <p className="text-sm font-medium">estudio@stoico.arq</p>
                   </div>
                 </a>
-                <a href="tel:+525512345678" className="group flex items-center gap-4 text-ink">
+                <a href="tel:+584121234567" className="group flex items-center gap-4 text-ink">
                   <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-ink text-paper transition-colors group-hover:bg-clay">
                     <Icon name="phone" size={20} />
                   </span>
                   <div>
                     <p className="text-xs uppercase tracking-widest text-ink-soft">Teléfono</p>
-                    <p className="text-sm font-medium">+52 55 1234 5678</p>
+                    <p className="text-sm font-medium">+58 412 123 4567</p>
                   </div>
                 </a>
                 <div className="flex items-center gap-4 text-ink">
@@ -105,7 +132,7 @@ export function ContactPage() {
                   </span>
                   <div>
                     <p className="text-xs uppercase tracking-widest text-ink-soft">Horario de estudio</p>
-                    <p className="text-sm font-medium">Lun – Vie · 9:00 a 18:00</p>
+                    <p className="text-sm font-medium">Lun – Sáb · 9:00 a 18:00</p>
                   </div>
                 </div>
               </div>
@@ -114,12 +141,12 @@ export function ContactPage() {
 
           <div className="lg:col-span-7">
             {submitted ? (
-              <Reveal className="flex h-full flex-col items-center justify-center rounded-3xl bg-ink p-14 text-center text-paper">
+              <Reveal className="flex h-full flex-col items-center justify-center rounded-3xl border border-line bg-paper-deep p-14 text-center text-ink">
                 <span className="flex h-16 w-16 items-center justify-center rounded-full bg-clay text-paper">
                   <Icon name="check" size={28} />
                 </span>
-                <h2 className="mt-6 font-display text-4xl text-paper">Solicitud recibida</h2>
-                <p className="mt-4 max-w-md text-sm leading-relaxed text-paper/70">
+                <h2 className="mt-6 font-display text-4xl font-semibold text-ink">Solicitud recibida</h2>
+                <p className="mt-4 max-w-md text-sm leading-relaxed text-ink-soft">
                   Gracias, {form.name.split(' ')[0]}. Tu {consultationTypes.find((t) => t.value === form.type)?.label.toLowerCase()} fue
                   registrada con folio de referencia. Te contactaremos a {form.email} en el transcurso de 48 horas hábiles.
                 </p>
@@ -129,7 +156,7 @@ export function ContactPage() {
                     setForm(initialForm)
                     setSubmitted(false)
                   }}
-                  className="mt-8 inline-flex items-center gap-2 rounded-full border border-paper/30 px-6 py-3 text-sm text-paper transition-all hover:border-clay hover:text-clay"
+                  className="mt-8 inline-flex items-center gap-2 rounded-full border border-ink/25 px-6 py-3 text-sm text-ink transition-all hover:border-clay hover:text-clay"
                 >
                   Nueva solicitud
                   <Icon name="arrow-right" size={16} />
@@ -137,6 +164,7 @@ export function ContactPage() {
               </Reveal>
             ) : (
               <form
+                id="consulta-form"
                 onSubmit={handleSubmit}
                 className="rounded-3xl border border-line bg-paper-deep p-8 md:p-10"
                 noValidate
@@ -180,7 +208,7 @@ export function ContactPage() {
                       type="text"
                       value={form.name}
                       onChange={(event) => update('name', event.target.value)}
-                      placeholder="Ana Sofía Martínez"
+                      placeholder="José Rodríguez"
                       className={inputStyles}
                     />
                   </div>
@@ -206,7 +234,7 @@ export function ContactPage() {
                       type="tel"
                       value={form.phone}
                       onChange={(event) => update('phone', event.target.value)}
-                      placeholder="+52 55 0000 0000"
+                      placeholder="+58 412 000 0000"
                       className={inputStyles}
                     />
                   </div>
@@ -219,7 +247,7 @@ export function ContactPage() {
                       type="text"
                       value={form.location}
                       onChange={(event) => update('location', event.target.value)}
-                      placeholder="Valle de Bravo, Estado de México"
+                      placeholder="La Asunción, Isla de Margarita"
                       className={inputStyles}
                     />
                   </div>

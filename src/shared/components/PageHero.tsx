@@ -9,13 +9,19 @@ interface PageHeroProps {
 
 export function PageHero({ eyebrow, title, description, image }: PageHeroProps) {
   return (
-    <section className="relative overflow-hidden bg-ink px-6 pb-24 pt-36 text-paper md:px-12 md:pb-32 md:pt-44">
+    <section className="relative overflow-hidden bg-paper px-6 pb-24 pt-36 text-ink md:px-12 md:pb-32 md:pt-44">
       <div className="grain absolute inset-0 opacity-40" />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2 }}
-        className="absolute -right-32 -top-32 h-[480px] w-[480px] rounded-full bg-clay/20 blur-[120px]"
+        className="absolute -right-32 -top-32 h-[480px] w-[480px] rounded-full bg-sand/30 blur-[120px]"
+      />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2, delay: 0.2 }}
+        className="absolute -left-40 bottom-0 h-[460px] w-[460px] rounded-full bg-stone/10 blur-[120px]"
       />
       <div className="relative mx-auto max-w-7xl">
         <motion.p
@@ -30,7 +36,7 @@ export function PageHero({ eyebrow, title, description, image }: PageHeroProps) 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-4xl font-display text-5xl font-medium leading-[1.05] text-balance md:text-7xl"
+          className="max-w-4xl font-display text-5xl font-semibold leading-[1.05] text-balance md:text-7xl"
         >
           {title}
         </motion.h1>
@@ -38,7 +44,7 @@ export function PageHero({ eyebrow, title, description, image }: PageHeroProps) 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-6 max-w-2xl text-base leading-relaxed text-paper/70 md:text-lg"
+          className="mt-6 max-w-2xl text-base leading-relaxed text-ink-soft md:text-lg"
         >
           {description}
         </motion.p>
@@ -49,7 +55,7 @@ export function PageHero({ eyebrow, title, description, image }: PageHeroProps) 
             transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             src={image}
             alt=""
-            className="mt-14 aspect-[16/7] w-full rounded-3xl object-cover shadow-card"
+            className="mt-14 aspect-[16/7] w-full rounded-3xl border border-line object-cover shadow-card"
           />
         ) : null}
       </div>

@@ -7,9 +7,9 @@ import { Icon } from '../shared/components/Icon'
 import type { IconName } from '../shared/components/Icon'
 
 const stats: { value: string; label: string }[] = [
-  { value: '16+', label: 'Años de oficio' },
-  { value: '42', label: 'Obras construidas' },
-  { value: '8', label: 'Reconocimientos' },
+  { value: '18+', label: 'Años de oficio' },
+  { value: '40', label: 'Obras construidas' },
+  { value: '3', label: 'Reconocimientos' },
   { value: '3', label: 'Disciplinas en estudio' },
 ]
 
@@ -52,7 +52,7 @@ export function StudioPage() {
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 md:grid-cols-4">
           {stats.map((stat, i) => (
             <Reveal key={stat.label} delay={i * 0.08}>
-              <p className="font-display text-5xl font-medium text-clay md:text-6xl">{stat.value}</p>
+              <p className="font-display text-5xl font-semibold text-clay md:text-6xl">{stat.value}</p>
               <p className="mt-2 text-sm text-ink-soft">{stat.label}</p>
             </Reveal>
           ))}
@@ -79,38 +79,38 @@ export function StudioPage() {
         </div>
       </Section>
 
-      <section className="bg-ink px-6 py-20 text-paper md:px-12">
+      <section className="bg-paper-deep px-6 py-20 md:px-12">
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-14 md:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="relative overflow-hidden rounded-3xl"
+            className="relative overflow-hidden rounded-3xl border border-line shadow-card"
           >
             <img src={profile.portrait} alt={`Retrato de ${profile.fullName}`} className="aspect-[4/5] w-full object-cover" />
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/90 to-transparent p-6 pt-16">
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/85 to-transparent p-6 pt-16">
               <p className="font-display text-2xl text-paper">{profile.fullName}</p>
-              <p className="text-sm text-paper/70">{profile.title}</p>
+              <p className="text-sm text-paper/75">{profile.title}</p>
             </div>
           </motion.div>
 
           <div>
             <Reveal>
               <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-clay">Trayectoria</p>
-              <h2 className="font-display text-4xl font-medium leading-tight text-balance md:text-5xl">
-                Diseñar es comprometerse con el tiempo de las obras
+              <h2 className="font-display text-4xl font-semibold leading-tight text-balance md:text-5xl">
+                Diseñar es comprometerse con el tiempo y el clima de las obras
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-paper/75">{profile.philosophy}</p>
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-ink-soft">{profile.philosophy}</p>
             </Reveal>
             <Reveal delay={0.2}>
               <h3 className="mt-10 text-xs font-semibold uppercase tracking-widest text-clay">Formación</h3>
               <ul className="mt-4 space-y-3">
                 {profile.education.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-paper/80">
-                    <Icon name="check" size={16} className="mt-0.5 shrink-0 text-sage" />
+                  <li key={item} className="flex items-start gap-3 text-sm text-ink-soft">
+                    <Icon name="check" size={16} className="mt-0.5 shrink-0 text-clay" />
                     {item}
                   </li>
                 ))}
