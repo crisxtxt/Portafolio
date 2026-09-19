@@ -1,24 +1,26 @@
 import type { UnitPrice } from '../shared/types/portfolio'
 
+export const PRICE_PER_M2 = 150
+
 export const unitPrices: Record<string, UnitPrice> = {
   residencial: {
     category: 'residencial',
-    low: 900,
-    high: 1600,
+    low: PRICE_PER_M2,
+    high: PRICE_PER_M2,
     currency: 'USD',
     unit: 'm²',
   },
   comercial: {
     category: 'comercial',
-    low: 1100,
-    high: 1900,
+    low: PRICE_PER_M2,
+    high: PRICE_PER_M2,
     currency: 'USD',
     unit: 'm²',
   },
   paisajismo: {
     category: 'paisajismo',
-    low: 120,
-    high: 350,
+    low: PRICE_PER_M2,
+    high: PRICE_PER_M2,
     currency: 'USD',
     unit: 'm²',
   },

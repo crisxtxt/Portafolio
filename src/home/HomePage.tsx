@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { featuredProjects, projects } from '../projects/data/projects'
 import { ProjectCard } from '../projects/components/ProjectCard'
 import { categoryMeta } from '../projects/shared/categories'
+import { architectProfile } from '../studio/data/profile'
 import { Section } from '../shared/components/Section'
 import { Reveal } from '../shared/components/Reveal'
 import { Icon } from '../shared/components/Icon'
@@ -106,7 +107,7 @@ export function HomePage() {
             className="relative lg:col-span-5"
           >
             <div className="relative overflow-hidden rounded-3xl border border-line shadow-card">
-              <img src="/images/casa-playa-angel.svg" alt="Casa de playa frente al mar" className="aspect-[4/3] w-full object-cover" />
+              <img src="/images/casa-playa-angel.jpg" alt="Casa de playa frente al mar" className="aspect-[4/3] w-full object-cover" />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/80 to-transparent p-6">
                 <p className="text-xs uppercase tracking-widest text-paper/70">Casa Playa El Ángel · Margarita</p>
                 <p className="mt-1 font-display text-xl text-paper">Cal y madera frente al mar</p>
@@ -142,6 +143,56 @@ export function HomePage() {
           ))}
         </div>
       </Section>
+
+      <section className="bg-paper-deep px-6 py-20 text-ink md:px-12">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-14 md:grid-cols-2">
+          <Reveal>
+            <div className="relative overflow-hidden rounded-3xl border border-line shadow-card">
+              <img
+                src={architectProfile.portrait}
+                alt={`Retrato de ${architectProfile.fullName}, director del estudio`}
+                className="aspect-[4/5] w-full object-cover"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/85 to-transparent p-6 pt-16">
+                <p className="font-display text-2xl text-paper">{architectProfile.fullName}</p>
+                <p className="text-sm text-paper/75">{architectProfile.title}</p>
+              </div>
+            </div>
+          </Reveal>
+          <div>
+            <Reveal>
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-clay">El director del estudio</p>
+              <h2 className="font-display text-4xl font-semibold leading-tight text-balance md:text-5xl">
+                Segundo Suarez traduce la isla en arquitectura
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-ink-soft">{architectProfile.philosophy}</p>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <div className="mt-8 flex gap-10">
+                <div>
+                  <p className="font-display text-4xl font-semibold text-clay">{architectProfile.yearsExperience}+</p>
+                  <p className="mt-1 text-xs uppercase tracking-widest text-ink-soft">Años de oficio</p>
+                </div>
+                <div>
+                  <p className="font-display text-4xl font-semibold text-clay">{architectProfile.recognitions.length}</p>
+                  <p className="mt-1 text-xs uppercase tracking-widest text-ink-soft">Reconocimientos</p>
+                </div>
+              </div>
+            </Reveal>
+            <Reveal delay={0.3}>
+              <Link
+                to="/estudio"
+                className="group mt-10 inline-flex items-center gap-3 rounded-full border border-ink/25 px-8 py-4 text-sm font-medium text-ink transition-all duration-300 hover:border-clay hover:text-clay"
+              >
+                Conocer la trayectoria
+                <Icon name="arrow-right" size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+            </Reveal>
+          </div>
+        </div>
+      </section>
 
       <section className="px-6 py-20 md:px-12">
         <div className="mx-auto max-w-7xl">

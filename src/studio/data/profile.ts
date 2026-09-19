@@ -7,7 +7,7 @@ export const architectProfile: ArchitectProfile = {
   bio: 'Más de 18 años diseñando obra construida entre el mar y la ciudad. Segundo ha liderado 40+ proyectos desde la factibilidad hasta la entrega, con una convicción: la arquitectura debe envejecer bien, resistir el clima y explicarse sola.',
   philosophy:
     'Creemos en una arquitectura de baja voz: materiales honestos, luz medida y viento bien leído. No diseñamos edificios; diseñamos condiciones para que la vida se asiente entre el calor, la brisa y el tiempo de la isla. Cada obra se evalúa por su relación con el sitio, su resistencia al clima y la manera en que aloja a quien la habita.',
-  portrait: '/images/portrait-director.svg',
+  portrait: '/images/portrait-director.jpg',
   yearsExperience: 18,
   education: [
     'Arquitectura — Universidad Simón Bolívar, Caracas',
@@ -44,7 +44,7 @@ export const architectProfile: ArchitectProfile = {
       role: 'Socio · Arquitecto',
       discipline: 'Estructuras y envolventes',
       bio: 'Especialista en fachadas de doble piel y resistencia al clima costero. Lidera el Paseo La Asunción.',
-      image: '/images/portrait-2.svg',
+      image: '/images/portrait-2.jpg',
     },
     {
       id: 'T-002',
@@ -52,7 +52,7 @@ export const architectProfile: ArchitectProfile = {
       role: 'Arquitecta de proyectos',
       discipline: 'Interiores y reutilización',
       bio: 'Responsable de las intervenciones reversibles y del mobiliario adosado del estudio.',
-      image: '/images/portrait-3.svg',
+      image: '/images/portrait-3.jpg',
     },
     {
       id: 'T-003',
@@ -60,7 +60,7 @@ export const architectProfile: ArchitectProfile = {
       role: 'Ingeniero estructural',
       discipline: 'Concreto, madera y sismicidad',
       bio: '14 años calculando estructuras en ambiente salino y suelo insular. Acompaña los prototipos costeros.',
-      image: '/images/portrait-4.svg',
+      image: '/images/portrait-4.jpg',
     },
     {
       id: 'T-004',
@@ -68,7 +68,7 @@ export const architectProfile: ArchitectProfile = {
       role: 'Diseñadora de paisaje',
       discipline: 'Paisajismo xerófilo y bordes de agua',
       bio: 'Dirige la línea de paisajismo del estudio: botánica nativa, sombra y manejo del agua de lluvia.',
-      image: '/images/portrait-2.svg',
+      image: '/images/portrait-camila.jpg',
     },
   ],
 }

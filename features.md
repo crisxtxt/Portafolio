@@ -167,7 +167,7 @@
 **Criterios de aceptación**
 
 1. Dado el estimador, Cuando el usuario ajusta el slider de superficie, Entonces el valor se limita al rango **20–20 000 m²** (clamp) y el área se formatea en locale `es` (ej. `1,500 m²`).
-2. Dado el usuario, Cuando cambia de categoría, Entonces el rango de presupuesto se recalcula al instante con `estimateBudget(areaM2, category)` y se muestran `{low, high}` en USD (formato `es`).
+2. Dado el usuario, Cuando cambia de categoría, Entonces el presupuesto se recalcula al instante con `estimateBudget(areaM2, category)`; con tarifa uniforme `$150 USD/m²` el valor es único (`low === high`) y se muestra en formato `es`.
 3. Dado el estimador, Cuando el usuario presiona **"Usar esta estimación en mi cotización"**, Entonces la selección (categoría + área) se transfiere al formulario vía el callback `onEstimate` (F-11 AC 4) y el resultado es consistente con `pricing.ts` (mismas unidades/múltiplos).
 
 ### F-11 — Formulario de consulta — En desarrollo
@@ -186,11 +186,11 @@
 ### F-12 — Pricing (lógica de negocio) — Producción
 
 - **Módulo:** `src/contact/pricing.ts`.
-- **Fuente de verdad por m² (USD):** residencial 900–1600 · comercial 1100–1900 · paisajismo 120–350.
+- **Fuente de verdad por m² (USD):** tarifa uniforme `PRICE_PER_M2 = 150` para las tres categorías (`unitPrices` con `low === high`).
 
 **Criterios de aceptación (spec técnica verificable)**
 
-1. Dado `estimateBudget(areaM2, category)`, Cuando `category` es válida, Entonces retorna `{ low: round(areaM2 * low), high: round(areaM2 * high) }` con los multiplicadores de `unitPrices` (`estimateBudget(500, 'residencial')` → `{ low: 450000, high: 800000 }`).
+1. Dado `estimateBudget(areaM2, category)`, Cuando `category` es válida, Entonces retorna `{ low: round(areaM2 * 150), high: round(areaM2 * 150) }` con los multiplicadores de `unitPrices` (`estimateBudget(500, 'residencial')` → `{ low: 75000, high: 75000 }`).
 2. Dado `estimateBudget` con categoría desconocida, Cuando se invoca, Entonces usa fallback `residencial` (nunca lanza) y el resultado es determinista.
 3. Dado `formatArea(areaM2)`, Cuando `areaM2` es un número ≥ 0, Entonces retorna `${areaM2.toLocaleString('es')} m²` sin decimales espurios (`formatArea(1500)` → `1500 m²`) y rechaza valores negativos o NaN en la frontera (F-21).
 
@@ -207,7 +207,7 @@
 
 ### F-14 — Generación de assets SVG — Producción
 
-- **Módulo:** `public/images/` (65 assets) + `scripts/generate-images.ps1`, `scripts/generate-galleries.ps1`.
+- **Módulo:** `public/images/` (66 assets: 47 SVG + 19 JPG) + `scripts/generate-images.ps1`, `scripts/generate-galleries.ps1`.
 - **Descripción:** assets procedimentales deterministas; al regenerar, las imágenes no cambian salvo alteración del script.
 
 **Criterios de aceptación**

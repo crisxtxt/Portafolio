@@ -45,7 +45,7 @@ export function StudioPage() {
         eyebrow="El Estudio"
         title="Arquitectura de baja voz para un mundo construido"
         description={profile.bio}
-        image="/images/atelier.svg"
+        image="/images/atelier.jpg"
       />
 
       <section className="border-b border-line px-6 py-14 md:px-12">

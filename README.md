@@ -47,7 +47,7 @@ npm run lint       # oxlint
 - [x] Ficha de obra: specs, materiales, hitos, fases y galería.
 - [x] Comparador "obra gris vs. acabado final" con arrastre.
 - [x] Visor de planos con zoom, desplazamiento y reset.
-- [x] Estimador de presupuesto por m² → pasarela que precarga el formulario de cotización.
+- [x] Estimador de presupuesto por m² ($150 USD/m²) → pasarela que precarga el formulario de cotización.
 - [x] Contacto directo por WhatsApp, correo y teléfono.
 - [x] Transiciones de página cinematográficas y animaciones de scroll (bajar y subir).
 - [x] Code-splitting: páginas, comparador y visor cargados con `React.lazy`.

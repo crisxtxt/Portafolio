@@ -15,7 +15,7 @@ Portafolio web SPA de un estudio de arquitectura — **"Stoico · Estudio de Arq
 
 ### Identidad de marca
 - **Nombre:** Stoico. **Subtítulo:** Estudio de Arquitectura.
-- **Territorio:** Isla de Margarita (La Asunción · Pampatar · Playa El Ángel).
+- **Territorio:** Isla de Margarita (sede en Av. Bolívar, La Asunción · obra en Pampatar · Playa El Ángel).
 - **Estética:** masculina, sobria y luminosa; paleta "**gris piedra + arena**" con bronce como acento; tipografía display **Archivo** (título) + **Inter** (cuerpo).
 - **Posicionamiento:** diseño de baja voz, materiales honestos y arquitectura que resiste el tiempo; el estudio reutiliza la identidad previa (Cristina Vargas) como antecedente de obra internacional (ADR-007).
 
@@ -110,7 +110,7 @@ src/
     └── types/               → Contratos de dominio (portfolio.ts)
 
 public/
-├── images/                  → 65 assets SVG procedimentales (escenas, galerías, planos, retratos, estudio)
+├── images/                  → 66 assets (47 SVG procedimentales + 19 fotografías reales)
 scripts/                     → Generadores PowerShell de assets (generate-images.ps1, generate-galleries.ps1)
 .opencode/
 ├── agents/                  → Perfiles de agentes (frontend-developer, git-devops, qa-engineer, tech-leader)
@@ -255,7 +255,8 @@ type ConsultationType = 'cotizacion' | 'consultoria' | 'seguimiento-obra'
 Campos: `type`, `name`, `email`, `phone`, `category: Category`, `areaM2: number`, `location`, `budgetRange`, `message`, `preferredDate`, `preferredTime`. Envío client-side (payload + éxito simulado); **backend pendiente** (el formulario no envía aún a ningún servicio real). Pasarela de baja fricción: el `BudgetEstimator` precarga categoría/área/`type=cotizacion` en el formulario vía su callback `onEstimate` (scroll suave al form); también hay acceso directo por WhatsApp (`wa.me/584121234567`).
 
 ### `UnitPrice` y pricing (`src/contact/pricing.ts`)
-- `unitPrices`: residencial $900–1600 USD/m² · comercial $1100–1900 USD/m² · paisajismo $120–350 USD/m².
+- `PRICE_PER_M2 = 150`: tarifa **uniforme de $150 USD/m²** para las tres categorías (`unitPrices` con `low === high`).
+- El estimador muestra un único valor (`área × $150`) en lugar de un rango.
 - `budgetRanges`: `$100k–$250k`, `$250k–$500k`, `$500k–$1M`, `$1M–$2M`, `Más de $2M`.
 - Helpers puros (testeables): `formatArea(areaM2)` y `estimateBudget(areaM2, category)` → `{ low, high }` (USD).
 
@@ -285,6 +286,7 @@ Helpers disponibles:
 - Todo dato estático vive en el data layer, nunca en componentes.
 - Moneda: USD; formato de área/localización en locale `es`.
 - Imágenes: distinctas por proyecto (foto), comparativas (`-before/-after`) y planos (`-blueprint`) solo en proyectos que lo declaran.
+- Fotografías reales (JPG) para el director/equipo (`portrait-*.jpg`) y las obras de Margarita P-009 a P-011 (`casa-playa-angel*.jpg`, `malecon-pampatar*.jpg`, `paseo-la-asuncion*.jpg` con `-g1/g2/g3`); el resto del catálogo (P-001 a P-008) usa SVG procedimentales. El plano y las comparativas del Malecón conservan SVG.
 
 ---
 
@@ -331,7 +333,7 @@ Helpers disponibles:
 - [x] Data layer de proyectos (11 registros + selectores) y perfil del estudio
 - [x] Lógica de presupuestos (`contact/pricing.ts`)
 - [x] Pasarela de baja fricción `BudgetEstimator → onEstimate → formulario` (prefill) + contacto por WhatsApp
-- [x] Generación de assets SVG (`public/images/` = 65 assets + scripts PowerShell)
+- [x] Generación de assets (`public/images/` = 66 assets: 47 SVG procedimentales + 19 fotografías reales, scripts PowerShell)
 - [x] Shell de la app / enrutado (`App.tsx`, AppShell, Navbar, Footer, ScrollToTop)
 - [x] Páginas del portfolio (Home, catálogo, detalle de obra, estudio, contacto, 404)
 - [x] Rutas lazy por página (`React.lazy`) + lazy de BlueprintComparison/BlueprintViewer
@@ -390,7 +392,7 @@ Helpers disponibles:
 | ADR-004 | 2026-09-05 | **Filtros de catálogo URL-driven** — Decisión: el estado del filtro vive en `?categoria=` (fuente de verdad), no en estado local, para deep-linking y compartir vistas. Consecuencias: sin efecto sincronizador (sin setState en effect); back/forward del navegador funciona. | Vigente |
 | ADR-005 | 2026-09-05 | **SPA con data layer estático (único frontend)** — Decisión: sin backend/DB; contenido tipado en data layer. Consecuencias: cero operaciones server; el paso a API/CMS debe preservar los contratos de `portfolio.ts` (DIP). | Vigente |
 | ADR-006 | 2026-09-05 | **Repo personal single-developer: trabajo directo sobre `master`** — Decisión: el git-devops commitea y hace push automático por funcionalidad a `origin/master`; sin PR obligatorios en este repo. Consecuencias: historial lineal simple; si el repo se vuelve colaborativo, se adopta trunk-based + feature branches. | Vigente |
-| ADR-007 | 2026-09-19 | **Rebranding "Stoico · Estudio de Arquitectura" (Isla de Margarita)** — Contexto: se reposiciona el portafolio en el mercado local de Nueva Esparta con estética masculina, sobria y luminosa. Decisión: paleta "gris piedra + arena" (sustituye el óxido previo; `clay` pasa a bronce `#9f7d3f`, se añaden `sand`/`stone`), tipografía display **Archivo**; director nuevo `Segundo Suarez` (18 años); 3 proyectos locales de ejemplo (P-009 a P-011, incluido Malecón de Pampatar con comparativa/plano); superficies a tema claro con `Reveal once:false` (animación al bajar y subir); pasarela estimador→formulario + WhatsApp. El legado internacional (México/CDMX, identidad Cristina Vargas) se conserva en el catálogo P-001 a P-008 como antecedente de obra exterior. Consecuencias: reescritura parcial de `profile.ts`, `Navbar`/`Footer`/`HomePage` y revisión del tema claro en `ProjectDetailPage`/`ContactPage`/`BudgetEstimator`; cambios de contenido en `context.md`/`features.md` (docs:) + nuevo retrato y escenas procedimentales en `public/images/` (65 assets). | Vigente |
+| ADR-007 | 2026-09-19 | **Rebranding "Stoico · Estudio de Arquitectura" (Isla de Margarita)** — Contexto: se reposiciona el portafolio en el mercado local de Nueva Esparta con estética masculina, sobria y luminosa. Decisión: paleta "gris piedra + arena" (sustituye el óxido previo; `clay` pasa a bronce `#9f7d3f`, se añaden `sand`/`stone`), tipografía display **Archivo**; director nuevo `Segundo Suarez` (18 años); 3 proyectos locales de ejemplo (P-009 a P-011, incluido Malecón de Pampatar con comparativa/plano); superficies a tema claro con `Reveal once:false` (animación al bajar y subir); pasarela estimador→formulario + WhatsApp; tarifa uniforme **$150 USD/m²**; sede en **Av. Bolívar, La Asunción**. El legado internacional (México/CDMX, identidad Cristina Vargas) se conserva en el catálogo P-001 a P-008 como antecedente de obra exterior. Consecuencias: reescritura parcial de `profile.ts`, `Navbar`/`Footer`/`HomePage` (incluida sección "El director" que presenta a Segundo Suarez), tema claro en `ProjectDetailPage`/`ContactPage`/`BudgetEstimator`; fotografías reales placeholder (JPG) para retratos y obras de Margarita; cambios de contenido en `context.md`/`features.md` (docs:) + retrato y escenas procedimentales en `public/images/` (66 assets). | Vigente |
 
 ---
 

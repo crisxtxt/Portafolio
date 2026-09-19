@@ -24,7 +24,8 @@ export function BudgetEstimator({ onEstimate }: BudgetEstimatorProps) {
     <div className="rounded-3xl border border-line bg-paper-deep p-8 text-ink shadow-card md:p-10">
       <h3 className="font-display text-3xl font-semibold text-ink">Estimador de presupuesto</h3>
       <p className="mt-2 text-sm text-ink-soft">
-        Rango por m² según tarifas vigentes del estudio. La cotización final se ajusta al levantamiento.
+        Tarifa uniforme del estudio: <span className="font-medium text-clay">$150 USD / m²</span>. La cotización final se
+        ajusta al levantamiento.
       </p>
 
       <div className="mt-8">
@@ -80,12 +81,12 @@ export function BudgetEstimator({ onEstimate }: BudgetEstimatorProps) {
           transition={{ duration: 0.35 }}
           className="mt-8 rounded-2xl border border-line bg-paper p-6"
         >
-          <p className="text-xs uppercase tracking-widest text-ink-soft/60">Rango estimado de inversión</p>
+          <p className="text-xs uppercase tracking-widest text-ink-soft/60">Presupuesto estimado</p>
           <p className="mt-2 font-display text-4xl font-semibold text-ink">
-            ${estimate.low.toLocaleString('es')} – ${estimate.high.toLocaleString('es')}
+            ${estimate.low.toLocaleString('es')}
           </p>
           <p className="mt-2 text-xs text-ink-soft">
-            Tarifa {category}: ${estimateBudget(10, category).low} a ${estimateBudget(10, category).high} USD por m²
+            $150 USD por m² · {formatArea(areaM2)} de superficie
           </p>
         </motion.div>
       </AnimatePresence>

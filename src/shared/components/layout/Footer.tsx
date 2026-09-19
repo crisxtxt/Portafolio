@@ -54,7 +54,7 @@ export function Footer() {
                 +58 412 123 4567
               </a>
             </li>
-            <li className="text-ink-soft/70">La Asunción · Pampatar · Playa El Ángel</li>
+            <li className="text-ink-soft/70">Av. Bolívar 12 · La Asunción · Isla de Margarita</li>
           </ul>
         </div>
       </div>

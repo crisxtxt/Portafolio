@@ -475,8 +475,8 @@ export const projects: Project[] = [
       'Vivienda costera de baja huella que abre sus muros a la brisa y protege del sol las estancias de día.',
     description:
       'Casa Playa El Ángel se plantea como un pabellón de cal y madera a 40 metros del mar. Los muros portantes de concreto salino se envuelven con cal apagada que regula la humedad, y una cubierta de madera termotratada filtra la luz del este mientras mantiene la casa cruzando viento. El programa se retira del frente para conservar el borde de playa y se ordena en dos bandas: la zona de estar abierta a la brisa y el cuerpo privado protegido del poniente.',
-    heroImage: '/images/casa-playa-angel.svg',
-    gallery: ['/images/casa-playa-angel.svg', '/images/casa-playa-angel-g1.svg', '/images/casa-playa-angel-g2.svg', '/images/casa-playa-angel-g3.svg'],
+    heroImage: '/images/casa-playa-angel.jpg',
+    gallery: ['/images/casa-playa-angel.jpg', '/images/casa-playa-angel-g1.jpg', '/images/casa-playa-angel-g2.jpg', '/images/casa-playa-angel-g3.jpg'],
     hasBlueprintComparison: false,
     features: ['Cruz de ventilación natural', 'Celosías orientadas al este', 'Cubierta de madera termotratada', 'Cisterna de agua de lluvia'],
     materials: [
@@ -532,8 +532,8 @@ export const projects: Project[] = [
       'Paseo costero que ordena el borde de agua con sombra, vegetación xerófila y una plaza dura para el atardecer.',
     description:
       'El Malecón de Pampatar recupera un borde de agua ocupado por comercio informal y lo convierte en un paseo público de 4200 m². Una franja de piedra local amarra el paseo al mar, mientras los jardines xerófilos y el alumbrado solar bajo nivel ordenan la noche. El espacio mantiene las actividades de pesca artesanal y agrega una plaza dura para el mercado de fin de semana.',
-    heroImage: '/images/malecon-pampatar.svg',
-    gallery: ['/images/malecon-pampatar.svg', '/images/malecon-pampatar-g1.svg', '/images/malecon-pampatar-g2.svg', '/images/malecon-pampatar-g3.svg'],
+    heroImage: '/images/malecon-pampatar.jpg',
+    gallery: ['/images/malecon-pampatar.jpg', '/images/malecon-pampatar-g1.jpg', '/images/malecon-pampatar-g2.jpg', '/images/malecon-pampatar-g3.jpg'],
     beforeImage: '/images/malecon-pampatar-before.svg',
     afterImage: '/images/malecon-pampatar-after.svg',
     hasBlueprintComparison: true,
@@ -590,8 +590,8 @@ export const projects: Project[] = [
       'Arcada comercial y cultural que renueva la calle principal de La Asunción con patio abierto al norte.',
     description:
       'El Paseo La Asunción ordena un frente de calle de 2800 m² en tres bandas: la arcada comercial abierta a la sombra, el patio cultural con vegetación de altura y el cuerpo de oficinas sobre la rasante. Los pórticos de concreto aparente y la arcada continua protegen del sol y la lluvia, y la cubierta inclinada capta agua para la red de riego. En construcción, con entregas parciales por sector.',
-    heroImage: '/images/paseo-la-asuncion.svg',
-    gallery: ['/images/paseo-la-asuncion.svg', '/images/paseo-la-asuncion-g1.svg', '/images/paseo-la-asuncion-g2.svg', '/images/paseo-la-asuncion-g3.svg'],
+    heroImage: '/images/paseo-la-asuncion.jpg',
+    gallery: ['/images/paseo-la-asuncion.jpg', '/images/paseo-la-asuncion-g1.jpg', '/images/paseo-la-asuncion-g2.jpg', '/images/paseo-la-asuncion-g3.jpg'],
     hasBlueprintComparison: false,
     features: ['Arcada continua de sombra', 'Patio cultural con árbol nativo', 'Cubierta captadora de lluvia', 'Estructura de pórticos prefabricados'],
     materials: [
