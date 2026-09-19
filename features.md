@@ -38,7 +38,7 @@
 | F-08 | Visor de planos (zoom/pan) | `src/blueprint-viewer/components/BlueprintViewer.tsx` | Producción | 4 |
 | F-09 | Estudio / perfil del arquitecto | `src/studio/StudioPage.tsx` | Producción | 3 |
 | F-10 | Estimador de presupuesto | `src/contact/components/BudgetEstimator.tsx` | Producción | 3 |
-| F-11 | Formulario de consulta | `src/contact/ContactPage.tsx` | En desarrollo | 4 |
+| F-11 | Formulario de consulta | `src/contact/ContactPage.tsx` | En desarrollo | 5 |
 | F-12 | Pricing (lógica de negocio) | `src/contact/pricing.ts` | Producción | 3 |
 | F-13 | Data layer y selectores | `src/projects/data/projects.ts`, `src/studio/data/profile.ts` | Producción | 3 |
 | F-14 | Generación de assets SVG | `public/images/`, `scripts/*.ps1` | Producción | 3 |
@@ -103,25 +103,25 @@
 ### F-05 — Catálogo con filtros URL-driven — Producción
 
 - **Módulo:** `src/projects/ProjectsPage.tsx` (filtros con `useSearchParams`).
-- **Contenido:** 8 obras (residencial 4 · comercial 3 · paisajismo 1).
+- **Contenido:** 11 obras (residencial 5 · comercial 4 · paisajismo 2).
 
 **Criterios de aceptación**
 
-1. Dado `/proyectos`, Cuando se carga, Entonces muestra las 8 obras sin filtro y el contador de resultados coincide con la selección.
-2. Dado el usuario en el catálogo, Cuando selecciona una categoría, Entonces la URL pasa a contener `?categoria=<categoria>` (única fuente de verdad) y el grid se anima mostrando solo las obras de esa categoría (residencial=4, comercial=3, paisajismo=1).
+1. Dado `/proyectos`, Cuando se carga, Entonces muestra las 11 obras sin filtro y el contador de resultados coincide con la selección.
+2. Dado el usuario en el catálogo, Cuando selecciona una categoría, Entonces la URL pasa a contener `?categoria=<categoria>` (única fuente de verdad) y el grid se anima mostrando solo las obras de esa categoría (residencial=5, comercial=4, paisajismo=2).
 3. Dado un deep-link `/proyectos?categoria=comercial`, Cuando se carga, Entonces el tab activo es "comercial" y el grid filtra correctamente sin parpadeo ni efecto sincronizador.
 4. Dada la navegación back/forward del navegador, Cuando se cambia la query string, Entonces el filtro se actualiza en el mismo render (sin setState en efecto, sin estados divergentes).
 
 ### F-06 — Detalle de proyecto — Producción
 
 - **Módulo:** `src/projects/ProjectDetailPage.tsx` + data layer.
-- **Contenido:** 8 fichas; specs, galería (g1/g2/g3), materiales, hitos, fases, arquitectos, mapa, comparativa y plano solo si lo declara el registro.
+- **Contenido:** 11 fichas; specs, galería (g1/g2/g3), materiales, hitos, fases, arquitectos, mapa, comparativa y plano solo si lo declara el registro.
 
 **Criterios de aceptación**
 
 1. Dado `/proyectos/:slug` válido, Cuando se resuelve vía `getProjectBySlug`, Entonces muestra hero, specs (área, año, ubicación, presupuesto, categoría, estado, cliente) y descripción sin datos de otro proyecto.
-2. Dado un proyecto con `hasBlueprintComparison = true` (P-001 a P-004), Cuando se renderiza la ficha, Entonces aparecen el comparador y el visor de planos (lazy, con skeleton); Dado un proyecto con `false` (P-005 a P-008), Entonces NO se renderizan y el layout no deja espacios vacíos.
-3. Dado un proyecto con `beforeImage`/`afterImage` (P-001 a P-003), Cuando se muestra la comparativa, Entonces las imágenes corresponden al slug (convención `-before`/`-after`).
+2. Dado un proyecto con `hasBlueprintComparison = true` (P-001 a P-004 y P-010), Cuando se renderiza la ficha, Entonces aparecen el comparador y el visor de planos (lazy, con skeleton); Dado un proyecto con `false` (resto del catálogo), Entonces NO se renderizan y el layout no deja espacios vacíos.
+3. Dado un proyecto con `beforeImage`/`afterImage` (P-001 a P-003 y P-010), Cuando se muestra la comparativa, Entonces las imágenes corresponden al slug (convención `-before`/`-after`).
 4. Dado el footer de la ficha, Cuando el usuario navega al proyecto siguiente, Entonces se carga `next` definido por el data layer (sin dead-ends).
 5. Dado el estado "en-construccion" o "conceptual" en un proyecto, Cuando se muestra la ficha, Entonces el badge/categoría refleja el estado sin inconsistencia con `projects.ts`.
 
@@ -168,7 +168,7 @@
 
 1. Dado el estimador, Cuando el usuario ajusta el slider de superficie, Entonces el valor se limita al rango **20–20 000 m²** (clamp) y el área se formatea en locale `es` (ej. `1,500 m²`).
 2. Dado el usuario, Cuando cambia de categoría, Entonces el rango de presupuesto se recalcula al instante con `estimateBudget(areaM2, category)` y se muestran `{low, high}` en USD (formato `es`).
-3. Dado el estimador, Cuando el usuario envía una estimación, Entonces el resultado es consistente con `pricing.ts` (mismas unidades/múltiplos) y puede pre-cargar el campo de área del formulario.
+3. Dado el estimador, Cuando el usuario presiona **"Usar esta estimación en mi cotización"**, Entonces la selección (categoría + área) se transfiere al formulario vía el callback `onEstimate` (F-11 AC 4) y el resultado es consistente con `pricing.ts` (mismas unidades/múltiplos).
 
 ### F-11 — Formulario de consulta — En desarrollo
 
@@ -180,7 +180,8 @@
 1. Dado el formulario con `name` y `email` en blanco, Cuando el usuario intenta enviar, Entonces se muestran errores de validación y NO se genera envío ni estado de éxito.
 2. Dado campos requeridos válidos (name + email con formato `type=email`), Cuando el usuario envía, Entonces se muestra el estado de éxito con un folio de referencia y la confirmación de contacto en 48 h hábiles.
 3. Dado el submit exitoso, Cuando el estado cambia, Entonces el formulario no persiste en ningún servicio externo (el envío es simulado hasta F-20) y no se registran datos sensibles en logs.
-4. Dado el flujo desde el estimador, Cuando un presupuesto es calculado, Entonces ese valor llega al formulario (área/categoría pre-completadas) para reducir fricción.
+4. Dado el flujo desde el estimador, Cuando un presupuesto es calculado, Entonces ese valor llega al formulario (área/categoría pre-completadas + `type=cotizacion`, scroll suave al form) para reducir fricción.
+5. Dado el panel de contacto rápido, Cuando el usuario elige WhatsApp, Entonces se abre `wa.me/584121234567` con mensaje precargado de cotización y el enlace se marca como `external` (`target="_blank" rel="noopener"`).
 
 ### F-12 — Pricing (lógica de negocio) — Producción
 
@@ -196,7 +197,7 @@
 ### F-13 — Data layer y selectores — Producción
 
 - **Módulo:** `src/projects/data/projects.ts`, `src/studio/data/profile.ts`.
-- **Contenido:** 8 proyectos tipados (4 comparativas, 3 before/after, 4 planos) + helpers.
+- **Contenido:** 11 proyectos tipados (5 comparativas, 4 before/after, 5 planos) + helpers.
 
 **Criterios de aceptación**
 
@@ -206,7 +207,7 @@
 
 ### F-14 — Generación de assets SVG — Producción
 
-- **Módulo:** `public/images/` (49 assets) + `scripts/generate-images.ps1`, `scripts/generate-galleries.ps1`.
+- **Módulo:** `public/images/` (65 assets) + `scripts/generate-images.ps1`, `scripts/generate-galleries.ps1`.
 - **Descripción:** assets procedimentales deterministas; al regenerar, las imágenes no cambian salvo alteración del script.
 
 **Criterios de aceptación**

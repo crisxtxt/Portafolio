@@ -1,0 +1,20 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1000" viewBox="0 0 1400 1000">
+  <rect width="1400" height="1000" fill="#1e3a5f"/>
+  <g stroke="#9fc3e8" stroke-width="2" fill="none">
+    <rect x="120" y="140" width="1160" height="680"/>
+    <rect x="160" y="180" width="1080" height="120"/>
+    <rect x="160" y="640" width="1080" height="140"/>
+  </g>
+  <g stroke="#9fc3e8" stroke-width="1.2" fill="none" opacity="0.6">
+    <line x1="160" y1="380" x2="1240" y2="380"/>
+    <line x1="160" y1="520" x2="1240" y2="520"/>
+    <circle cx="300" cy="300" r="40" stroke-dasharray="8 8"/>
+    <circle cx="440" cy="300" r="40" stroke-dasharray="8 8"/>
+    <circle cx="580" cy="300" r="40" stroke-dasharray="8 8"/>
+    <rect x="900" y="260" width="260" height="80"/>
+    <circle cx="1100" cy="700" r="60" stroke-dasharray="8 8"/>
+    <circle cx="900" cy="700" r="60" stroke-dasharray="8 8"/>
+  </g>
+  <text x="80" y="80" fill="#9fc3e8" font-family="monospace" font-size="28">PLANTA GENERAL - MALECON PAMPATAR - ESC 1:200</text>
+  <text x="80" y="960" fill="#7fa8d8" font-family="monospace" font-size="22">ARQ. SEGUNDO SUAREZ - Nº REG. CENARQ 11-207 - HOJA 01/03</text>
+</svg>

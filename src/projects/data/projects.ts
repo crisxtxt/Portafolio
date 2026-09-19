@@ -477,6 +477,7 @@ export const projects: Project[] = [
       'Casa Playa El Ángel se plantea como un pabellón de cal y madera a 40 metros del mar. Los muros portantes de concreto salino se envuelven con cal apagada que regula la humedad, y una cubierta de madera termotratada filtra la luz del este mientras mantiene la casa cruzando viento. El programa se retira del frente para conservar el borde de playa y se ordena en dos bandas: la zona de estar abierta a la brisa y el cuerpo privado protegido del poniente.',
     heroImage: '/images/casa-playa-angel.svg',
     gallery: ['/images/casa-playa-angel.svg', '/images/casa-playa-angel-g1.svg', '/images/casa-playa-angel-g2.svg', '/images/casa-playa-angel-g3.svg'],
+    hasBlueprintComparison: false,
     features: ['Cruz de ventilación natural', 'Celosías orientadas al este', 'Cubierta de madera termotratada', 'Cisterna de agua de lluvia'],
     materials: [
       {
@@ -495,7 +496,7 @@ export const projects: Project[] = [
       },
       {
         id: 'M-027',
-        name: 'Concreto f' + "0", 
+        name: 'Concreto salino', 
         surface: 'Cimentación y pórticos',
         finish: 'Aparente, alta resistencia al cloruro',
         sustainability: 'Mezcla con aditivo impermeabilizante de base vegetal',
@@ -548,7 +549,7 @@ export const projects: Project[] = [
       },
       {
         id: 'M-029',
-        name: 'Concreto aparente de peña',
+        name: 'Concreto aparente',
         surface: 'Plaza dura y mobiliario',
         finish: 'Cimbra de madera recuperada',
         sustainability: 'Mezcla con 30% de agregado reciclado',
@@ -591,6 +592,7 @@ export const projects: Project[] = [
       'El Paseo La Asunción ordena un frente de calle de 2800 m² en tres bandas: la arcada comercial abierta a la sombra, el patio cultural con vegetación de altura y el cuerpo de oficinas sobre la rasante. Los pórticos de concreto aparente y la arcada continua protegen del sol y la lluvia, y la cubierta inclinada capta agua para la red de riego. En construcción, con entregas parciales por sector.',
     heroImage: '/images/paseo-la-asuncion.svg',
     gallery: ['/images/paseo-la-asuncion.svg', '/images/paseo-la-asuncion-g1.svg', '/images/paseo-la-asuncion-g2.svg', '/images/paseo-la-asuncion-g3.svg'],
+    hasBlueprintComparison: false,
     features: ['Arcada continua de sombra', 'Patio cultural con árbol nativo', 'Cubierta captadora de lluvia', 'Estructura de pórticos prefabricados'],
     materials: [
       {

@@ -155,3 +155,132 @@ $workspace = @'
 Write-Svg "workspace" $workspace
 
 Write-Output "Generated comparisons, blueprints, portraits, studio images"
+
+# --- Isla de Margarita: escena de vivienda costera ---
+$coastalScene = @'
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{S1}"/><stop offset="1" stop-color="{S2}"/></linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{E1}"/><stop offset="1" stop-color="{E2}"/></linearGradient>
+  </defs>
+  <rect width="1400" height="900" fill="url(#sky)"/>
+  <rect x="0" y="520" width="1400" height="380" fill="url(#sea)"/>
+  <rect x="0" y="620" width="1400" height="130" fill="{SAND}"/>
+  <rect x="0" y="620" width="1400" height="130" fill="{SAND2}" opacity="0.5"/>
+  <g fill="{B1}">
+    <rect x="230" y="300" width="440" height="330"/>
+    <rect x="770" y="370" width="250" height="260"/>
+  </g>
+  <rect x="210" y="268" width="480" height="48" fill="{B2}"/>
+  <rect x="230" y="316" width="58" height="180" fill="{B2}"/>
+  <rect x="612" y="316" width="58" height="180" fill="{B2}"/>
+  <g fill="{W}">
+    <rect x="312" y="340" width="92" height="90"/><rect x="432" y="340" width="92" height="90"/>
+    <rect x="312" y="458" width="92" height="90"/><rect x="432" y="458" width="92" height="90"/>
+    <rect x="552" y="340" width="92" height="208"/>
+    <rect x="800" y="410" width="80" height="84"/><rect x="910" y="410" width="80" height="84"/>
+  </g>
+  <rect x="770" y="630" width="250" height="270" fill="{B1}" opacity="0.6"/>
+  <circle cx="1150" cy="430" r="34" fill="{AC1}"/>
+  <circle cx="1150" cy="430" r="18" fill="{AC2}"/>
+  <ellipse cx="1050" cy="636" rx="110" ry="16" fill="{B2}" opacity="0.5"/>
+  <path d="M0,700 L1400,700" stroke="{SAND2}" stroke-width="8"/>
+</svg>
+'@
+
+function New-CoastalScene($name, $sky1, $sky2, $sea1, $sea2, $sand, $sand2, $b1, $b2, $win, $accent1, $accent2) {
+  $svg = $coastalScene
+  $svg = $svg.Replace('{S1}', $sky1).Replace('{S2}', $sky2)
+  $svg = $svg.Replace('{E1}', $sea1).Replace('{E2}', $sea2)
+  $svg = $svg.Replace('{SAND}', $sand).Replace('{SAND2}', $sand2)
+  $svg = $svg.Replace('{B1}', $b1).Replace('{B2}', $b2).Replace('{W}', $win)
+  $svg = $svg.Replace('{AC1}', $accent1).Replace('{AC2}', $accent2)
+  Write-Svg $name $svg
+}
+
+New-CoastalScene "casa-playa-angel" "#f6f1e5" "#fdfbf6" "#c9ddda" "#9fc4bd" "#e6dcc6" "#d5c6a8" "#d8c4ab" "#b5946f" "#f8f2e2" "#87a093" "#5f7160"
+New-CoastalScene "malecon-pampatar" "#cfe0e8" "#f2f7fa" "#8fb2c9" "#64859c" "#d9cfb8" "#c4b593" "#8f8a82" "#6f6a62" "#e9edf0" "#7a8b6f" "#5f7160"
+New-CoastalScene "refugio-del-mar" "#e7eef0" "#f7faf9" "#a9c4c4" "#7ba1a1" "#dde4dc" "#c6d0c4" "#9aa79c" "#718076" "#eef3ee" "#b5653a" "#8f4b28"
+
+# --- Isla de Margarita: arcada comercial (La Asuncion) ---
+$arcade = @'
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{S1}"/><stop offset="1" stop-color="{S2}"/></linearGradient>
+  </defs>
+  <rect width="1400" height="900" fill="url(#sky)"/>
+  <rect x="0" y="620" width="1400" height="280" fill="{ST}"/>
+  <rect x="0" y="600" width="1400" height="40" fill="{ST2}"/>
+  <rect x="150" y="220" width="1100" height="46" fill="{B1}"/>
+  <g fill="{B2}">
+    <rect x="180" y="266" width="70" height="340"/>
+    <rect x="340" y="266" width="70" height="340"/>
+    <rect x="500" y="266" width="70" height="340"/>
+    <rect x="660" y="266" width="70" height="340"/>
+    <rect x="820" y="266" width="70" height="340"/>
+    <rect x="980" y="266" width="70" height="340"/>
+    <rect x="1140" y="266" width="70" height="340"/>
+  </g>
+  <g fill="{AW}">
+    <rect x="180" y="330" width="230" height="70"/>
+    <rect x="500" y="330" width="230" height="70"/>
+    <rect x="820" y="330" width="230" height="70"/>
+  </g>
+  <g fill="{W}">
+    <rect x="210" y="430" width="170" height="70"/>
+    <rect x="530" y="430" width="170" height="70"/>
+    <rect x="850" y="430" width="170" height="70"/>
+  </g>
+  <rect x="150" y="250" width="1100" height="16" fill="{B3}"/>
+  <rect x="220" y="586" width="960" height="30" fill="{ST3}"/>
+  <circle cx="1250" cy="200" r="60" fill="{SUN}"/>
+  <g stroke="{ST}" stroke-width="4" opacity="0.5">
+    <line x1="0" y1="560" x2="1400" y2="560"/>
+  </g>
+</svg>
+'@
+
+function New-Arcade($name, $sky1, $sky2, $slab, $roof, $col, $avatar, $win, $street, $line, $sun) {
+  $svg = $arcade
+  $svg = $svg.Replace('{S1}', $sky1).Replace('{S2}', $sky2)
+  $svg = $svg.Replace('{B1}', $slab).Replace('{B2}', $col).Replace('{B3}', $roof)
+  $svg = $svg.Replace('{AW}', $avatar).Replace('{W}', $win)
+  $svg = $svg.Replace('{ST}', $street).Replace('{ST2}', $line).Replace('{ST3}', $line).Replace('{SUN}', $sun)
+  Write-Svg $name $svg
+}
+
+New-Arcade "paseo-la-asuncion" "#e8e3d3" "#f8f5eb" "#c9bfa9" "#d8cbb4" "#cfc4ae" "#8f826c" "#bba06a" "#f5efdf" "#a89f8e" "#cfc4ae" "#f0c987"
+
+# --- Malecón de Pampatar: obra gris vs acabado ---
+New-BAPair "malecon-pampatar-before" "#d8d4cd" "#efedea" "#8f8a82" "#5f5b55" "#6b7480"
+New-BAPair "malecon-pampatar-after" "#dcd4c1" "#f4eee0" "#c8b79a" "#8f7f61" "#7aa775"
+
+# --- Plano del malecón ---
+$boardwalk = @'
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1000" viewBox="0 0 1400 1000">
+  <rect width="1400" height="1000" fill="#1e3a5f"/>
+  <g stroke="#9fc3e8" stroke-width="2" fill="none">
+    <rect x="120" y="140" width="1160" height="680"/>
+    <rect x="160" y="180" width="1080" height="120"/>
+    <rect x="160" y="640" width="1080" height="140"/>
+  </g>
+  <g stroke="#9fc3e8" stroke-width="1.2" fill="none" opacity="0.6">
+    <line x1="160" y1="380" x2="1240" y2="380"/>
+    <line x1="160" y1="520" x2="1240" y2="520"/>
+    <circle cx="300" cy="300" r="40" stroke-dasharray="8 8"/>
+    <circle cx="440" cy="300" r="40" stroke-dasharray="8 8"/>
+    <circle cx="580" cy="300" r="40" stroke-dasharray="8 8"/>
+    <rect x="900" y="260" width="260" height="80"/>
+    <circle cx="1100" cy="700" r="60" stroke-dasharray="8 8"/>
+    <circle cx="900" cy="700" r="60" stroke-dasharray="8 8"/>
+  </g>
+  <text x="80" y="80" fill="#9fc3e8" font-family="monospace" font-size="28">PLANTA GENERAL - MALECON PAMPATAR - ESC 1:200</text>
+  <text x="80" y="960" fill="#7fa8d8" font-family="monospace" font-size="22">ARQ. SEGUNDO SUAREZ - Nº REG. CENARQ 11-207 - HOJA 01/03</text>
+</svg>
+'@
+Write-Svg "malecon-pampatar-blueprint" $boardwalk
+
+# --- Retrato del director ---
+New-Portrait "portrait-director" "#ddd7cb" "#cbc3b2" "#c8936a" "#33302b"
+
+Write-Output "Generated Margarita scenes and director portrait"

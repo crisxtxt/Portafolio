@@ -66,4 +66,17 @@ New-Gallery "mar-g1" "#d6e4e6" "#eef5f5" "#8aa8a8" "#5f7d7d" "#e3eeec" "#f0c987"
 New-Gallery "mar-g2" "#cfe0e0" "#eaf3f3" "#a3bbbb" "#6f8b8b" "#e3eeec" "#b5653a"
 New-Gallery "mar-g3" "#d9e6e4" "#f0f6f5" "#7d9b9b" "#547070" "#dbe9e9" "#5f7d7d"
 
+# --- Isla de Margarita (Nueva Esparta) ---
+New-Gallery "casa-playa-angel-g1" "#dddcd2" "#f3f1ea" "#d3bfa6" "#a68c6e" "#f8f2e2" "#7a8b6f"
+New-Gallery "casa-playa-angel-g2" "#d2dfdd" "#eff5f4" "#b5b0a2" "#7f7a6c" "#e6f0ec" "#8f826c"
+New-Gallery "casa-playa-angel-g3" "#d9d2c6" "#f1ecdf" "#e0cdb4" "#bc9f80" "#f8f2e2" "#5f7160"
+
+New-Gallery "malecon-pampatar-g1" "#d2e0e6" "#eef4f6" "#8fa8bc" "#5f7d8f" "#e9f1f5" "#7a8b6f"
+New-Gallery "malecon-pampatar-g2" "#cfdcd8" "#eef4f2" "#a3bcba" "#6f8b89" "#e3eeea" "#8f826c"
+New-Gallery "malecon-pampatar-g3" "#d6e2e4" "#f0f6f6" "#7d9ba0" "#547070" "#e3eeec" "#5f7160"
+
+New-Gallery "paseo-la-asuncion-g1" "#e8e3d3" "#f8f5eb" "#cfc4ae" "#8f826c" "#f5efdf" "#9f7d3f"
+New-Gallery "paseo-la-asuncion-g2" "#dfded0" "#f1efe4" "#b9b1a5" "#6f675e" "#f0c987" "#5b554d"
+New-Gallery "paseo-la-asuncion-g3" "#e6e0d2" "#f5f2e8" "#e6c98a" "#c9a25a" "#fff6e0" "#9f7d3f"
+
 Write-Output "Generated gallery images"

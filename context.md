@@ -4,14 +4,20 @@
 >
 > **Mantenimiento:** Lo actualiza el Tech Leader ante cualquier cambio de arquitectura, contrato, dependencia crítica o roadmap. Toda tarea que amplíe este documento requiere commit convencional `docs:`.
 >
-> **Última revisión:** 2026-09-05
+> **Última revisión:** 2026-09-19
 
 ---
 
 ## 1. Visión General del Producto
 
 ### Qué es
-Portafolio web SPA de un estudio de arquitectura — **"Cristina Vargas Arquitectura"** — que muestra obras (fichas técnicas, planos interactivos, comparativas obra gris vs acabado), el perfil del arquitecto y permite solicitar consultas y presupuestos estimados por metro cuadrado.
+Portafolio web SPA de un estudio de arquitectura — **"Stoico · Estudio de Arquitectura"** (Isla de Margarita, Venezuela) — que muestra obras (fichas técnicas, planos interactivos, comparativas obra gris vs acabado), el perfil del director y permite solicitar consultas y presupuestos estimados por metro cuadrado.
+
+### Identidad de marca
+- **Nombre:** Stoico. **Subtítulo:** Estudio de Arquitectura.
+- **Territorio:** Isla de Margarita (La Asunción · Pampatar · Playa El Ángel).
+- **Estética:** masculina, sobria y luminosa; paleta "**gris piedra + arena**" con bronce como acento; tipografía display **Archivo** (título) + **Inter** (cuerpo).
+- **Posicionamiento:** diseño de baja voz, materiales honestos y arquitectura que resiste el tiempo; el estudio reutiliza la identidad previa (Cristina Vargas) como antecedente de obra internacional (ADR-007).
 
 ### Objetivos de negocio
 - Posicionar el portafolio del arquitecto y generar leads de consultoría y cotización de obra.
@@ -24,8 +30,8 @@ Portafolio web SPA de un estudio de arquitectura — **"Cristina Vargas Arquitec
 - Otros profesionales (constructores, ingenieros) en busca de colaboración.
 
 ### Mercado / Alcance
-- Mercado local/regional (México: CDMX, Guadalajara, Valle de Bravo, costa Nayarita).
-- Proyectos de tamaño medio-alto: vivienda 150–480 m², desarrollos comerciales 180–12 400 m², paisajismo hasta 2 300 m².
+- Mercado local de la Isla de Margarita + obra internacional (la identidad previa conserva proyecto en México como antecedente, ADR-007).
+- Proyectos locales de tamaño medio-alto: vivienda costera 150–480 m², desarrollos comerciales 180–12 440 m², paisajismo hasta 4 200 m².
 
 ---
 
@@ -83,7 +89,7 @@ src/
 ├── home/                    → Feature: landing / dashboard del portafolio
 │   └── HomePage.tsx         → Hero, destacados, disciplinas, servicios, CTA
 ├── projects/                → Feature: catálogo de proyectos
-│   ├── data/                → Data layer (projects.ts, 8 registros + selectores)
+│   ├── data/                → Data layer (projects.ts, 11 registros + selectores)
 │   ├── components/          → ProjectCard (TiltCard), CategoryBadge
 │   ├── shared/              → categoryMeta / labels + iconos por categoría
 │   ├── ProjectsPage.tsx     → Catálogo con filtros por categoría (URL-driven)
@@ -95,8 +101,8 @@ src/
 │   └── StudioPage.tsx       → Filosofía, biografía, reconocimientos, equipo
 ├── contact/                 → Feature: consultas / presupuestos
 │   ├── pricing.ts           → Lógica de negocio (estimación por m², rangos)
-│   ├── components/          → BudgetEstimator (slider de superficie)
-│   └── ContactPage.tsx      → Formulario ConsultationRequest + agendamiento
+│   ├── components/          → BudgetEstimator (slider de superficie + pasarela onEstimate)
+│   └── ContactPage.tsx      → Formulario ConsultationRequest + WhatsApp + agendamiento
 ├── pages/                   → NotFoundPage (404)
 └── shared/                  → Núcleo reutilizable (design system + dominio)
     ├── components/          → Button, Icon, Reveal, Section, PageHero, TiltCard
@@ -104,7 +110,7 @@ src/
     └── types/               → Contratos de dominio (portfolio.ts)
 
 public/
-├── images/                  → 49 assets SVG procedimentales (escenas, galerías, planos, retratos, estudio)
+├── images/                  → 65 assets SVG procedimentales (escenas, galerías, planos, retratos, estudio)
 scripts/                     → Generadores PowerShell de assets (generate-images.ps1, generate-galleries.ps1)
 .opencode/
 ├── agents/                  → Perfiles de agentes (frontend-developer, git-devops, qa-engineer, tech-leader)
@@ -140,17 +146,19 @@ rules.md                     → Reglas de desarrollo vinculantes
 ### Design tokens (paleta vigente en `src/index.css`)
 | Token | Valor | Uso típico |
 |-------|-------|-----------|
-| `--color-ink` | `#1c1a17` | Fondo oscuro / texto principal |
-| `--color-ink-soft` | `#5b554d` | Texto secundario |
-| `--color-paper` | `#faf7f2` | Fondo claro / tarjetas |
-| `--color-paper-deep` | `#f1ece3` | Fondo de sección / tarjetas |
-| `--color-line` | `#e3ddd2` | Bordes / separadores |
-| `--color-clay` | `#b5653a` | Color de marca / CTA / acentos |
-| `--color-clay-dark` | `#8f4b28` | Hover de marca |
+| `--color-ink` | `#2b2926` | Texto principal / fondo oscuro de acento |
+| `--color-ink-soft` | `#6b665e` | Texto secundario |
+| `--color-paper` | `#faf8f3` | Fondo claro / tarjetas |
+| `--color-paper-deep` | `#f2efe7` | Fondo de sección / tarjetas |
+| `--color-line` | `#e2dcd0` | Bordes / separadores |
+| `--color-clay` | `#9f7d3f` | Bronce / CTA / acento de marca |
+| `--color-clay-dark` | `#7c6130` | Hover de marca |
+| `--color-sand` | `#d8c6a2` | Acentos arena / señales |
+| `--color-stone` | `#87817a` | Acentos neutros gris piedra |
 | `--color-sage` | `#7a8b6f` | Acentos paisaje / éxito |
 | `--color-concrete` | `#6b7480` | Acentos neutros |
-| `--shadow-soft` / `--shadow-card` | — | Sombras de tarjetas y héroes |
-| `--font-display` | Cormorant Garamond | Titulares |
+| `--shadow-soft` / `--shadow-card` | — | Sombras en `rgba(43,41,38,…)` |
+| `--font-display` | Archivo | Titulares (display, sobrio) |
 | `--font-sans` | Inter | Cuerpo de texto |
 
 ---
@@ -244,7 +252,7 @@ interface GeoPoint { lat: number; lng: number }
 ```ts
 type ConsultationType = 'cotizacion' | 'consultoria' | 'seguimiento-obra'
 ```
-Campos: `type`, `name`, `email`, `phone`, `category: Category`, `areaM2: number`, `location`, `budgetRange`, `message`, `preferredDate`, `preferredTime`. Envío client-side (payload + éxito simulado); **backend pendiente** (el formulario no envía aún a ningún servicio real).
+Campos: `type`, `name`, `email`, `phone`, `category: Category`, `areaM2: number`, `location`, `budgetRange`, `message`, `preferredDate`, `preferredTime`. Envío client-side (payload + éxito simulado); **backend pendiente** (el formulario no envía aún a ningún servicio real). Pasarela de baja fricción: el `BudgetEstimator` precarga categoría/área/`type=cotizacion` en el formulario vía su callback `onEstimate` (scroll suave al form); también hay acceso directo por WhatsApp (`wa.me/584121234567`).
 
 ### `UnitPrice` y pricing (`src/contact/pricing.ts`)
 - `unitPrices`: residencial $900–1600 USD/m² · comercial $1100–1900 USD/m² · paisajismo $120–350 USD/m².
@@ -252,7 +260,7 @@ Campos: `type`, `name`, `email`, `phone`, `category: Category`, `areaM2: number`
 - Helpers puros (testeables): `formatArea(areaM2)` y `estimateBudget(areaM2, category)` → `{ low, high }` (USD).
 
 ### Catálogo de proyectos (`src/projects/data/projects.ts`)
-8 proyectos tipados:
+11 proyectos tipados:
 | ID | Slug | Título | Categoría | Estado |
 |----|------|--------|-----------|--------|
 | P-001 | `casa-luz` | Casa Luz | residencial | construido |
@@ -263,6 +271,9 @@ Campos: `type`, `name`, `email`, `phone`, `category: Category`, `areaM2: number`
 | P-006 | `casa-del-bosque` | Casa del Bosque | residencial | construido |
 | P-007 | `rehab-loft-corner` | REHAB Loft Corner | comercial | en-construccion |
 | P-008 | `refugio-del-mar` | Refugio del Mar | residencial | conceptual |
+| P-009 | `casa-playa-angel` | Casa Playa El Ángel | residencial | construido |
+| P-010 | `malecon-pampatar` | Malecón de Pampatar | paisajismo | construido |
+| P-011 | `paseo-la-asuncion` | Paseo La Asunción | comercial | en-construccion |
 
 Helpers disponibles:
 - `projects` — array completo
@@ -300,7 +311,7 @@ Helpers disponibles:
 ### Servicios de terceros (externos)
 | Servicio | Uso | Estado |
 |----------|-----|--------|
-| **Google Fonts** | Cormorant Garamond + Inter (`index.html`) | Activo (CDN) |
+| **Google Fonts** | Archivo + Inter (`index.html`) | Activo (CDN) |
 | **GitHub** | Repositorio remoto `crisxtxt/Portafolio` | Activo |
 | Hosting | — | Pendiente |
 | Backend / API | — | Pendiente |
@@ -317,9 +328,10 @@ Helpers disponibles:
 - [x] Design tokens / sistema de estilos (`src/index.css`)
 - [x] Sistema de diseño base (`shared/components`: Button, Icon, Reveal, Section, PageHero, TiltCard)
 - [x] Contratos de dominio (`shared/types/portfolio.ts`)
-- [x] Data layer de proyectos (8 registros + selectores) y perfil del estudio
+- [x] Data layer de proyectos (11 registros + selectores) y perfil del estudio
 - [x] Lógica de presupuestos (`contact/pricing.ts`)
-- [x] Generación de assets SVG (`public/images/` = 49 assets + scripts PowerShell)
+- [x] Pasarela de baja fricción `BudgetEstimator → onEstimate → formulario` (prefill) + contacto por WhatsApp
+- [x] Generación de assets SVG (`public/images/` = 65 assets + scripts PowerShell)
 - [x] Shell de la app / enrutado (`App.tsx`, AppShell, Navbar, Footer, ScrollToTop)
 - [x] Páginas del portfolio (Home, catálogo, detalle de obra, estudio, contacto, 404)
 - [x] Rutas lazy por página (`React.lazy`) + lazy de BlueprintComparison/BlueprintViewer
@@ -378,6 +390,7 @@ Helpers disponibles:
 | ADR-004 | 2026-09-05 | **Filtros de catálogo URL-driven** — Decisión: el estado del filtro vive en `?categoria=` (fuente de verdad), no en estado local, para deep-linking y compartir vistas. Consecuencias: sin efecto sincronizador (sin setState en effect); back/forward del navegador funciona. | Vigente |
 | ADR-005 | 2026-09-05 | **SPA con data layer estático (único frontend)** — Decisión: sin backend/DB; contenido tipado en data layer. Consecuencias: cero operaciones server; el paso a API/CMS debe preservar los contratos de `portfolio.ts` (DIP). | Vigente |
 | ADR-006 | 2026-09-05 | **Repo personal single-developer: trabajo directo sobre `master`** — Decisión: el git-devops commitea y hace push automático por funcionalidad a `origin/master`; sin PR obligatorios en este repo. Consecuencias: historial lineal simple; si el repo se vuelve colaborativo, se adopta trunk-based + feature branches. | Vigente |
+| ADR-007 | 2026-09-19 | **Rebranding "Stoico · Estudio de Arquitectura" (Isla de Margarita)** — Contexto: se reposiciona el portafolio en el mercado local de Nueva Esparta con estética masculina, sobria y luminosa. Decisión: paleta "gris piedra + arena" (sustituye el óxido previo; `clay` pasa a bronce `#9f7d3f`, se añaden `sand`/`stone`), tipografía display **Archivo**; director nuevo `Segundo Suarez` (18 años); 3 proyectos locales de ejemplo (P-009 a P-011, incluido Malecón de Pampatar con comparativa/plano); superficies a tema claro con `Reveal once:false` (animación al bajar y subir); pasarela estimador→formulario + WhatsApp. El legado internacional (México/CDMX, identidad Cristina Vargas) se conserva en el catálogo P-001 a P-008 como antecedente de obra exterior. Consecuencias: reescritura parcial de `profile.ts`, `Navbar`/`Footer`/`HomePage` y revisión del tema claro en `ProjectDetailPage`/`ContactPage`/`BudgetEstimator`; cambios de contenido en `context.md`/`features.md` (docs:) + nuevo retrato y escenas procedimentales en `public/images/` (65 assets). | Vigente |
 
 ---
 
